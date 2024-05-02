@@ -1,0 +1,23 @@
+#include <stdio.h>
+//global structure- which will be at out of function
+struct person {
+int age;
+float salary;
+};
+struc person persone1,person2,person3; //global variable
+int main(){
+structure person person1={27,2557.50};//direct initialize
+person1.age=27;
+person1.salary=2557.50;
+printf("Person1\n");
+//element wise assignment
+person2.age=25;
+person2.salary=2777.50;
+//structure wise assignmnet
+person3=person2
+printf("Age=%d\n",person1.age);
+printf("Salary=%f\n",person1.salary);
+printf("Age=%d\n",person3.age);
+printf("Salary=%f\n",person3.salary);
+return 0;
+}
