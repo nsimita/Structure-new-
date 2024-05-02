@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main(){ 
+//local structure- which will be in the function
+struct person {
+int age;
+float salary;
+};
+struc person persone1,person2; //local variables
+printf("Enter infos for person1\n");
+printf("Enter Age = \n");
+scanf("%d",&person1.age);
+printf("Enter Salary = \n");
+scanf("%f",&person1.salary);
+
+printf("Age=%d\n",person1.age);
+printf("Salary=%.2f\n",person1.salary);
+return 0;
+}
