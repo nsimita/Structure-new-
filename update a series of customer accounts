@@ -1,0 +1,97 @@
+/* update a series of customer accounts (simplified billing system) */
+#include <stdio.h>
+/* maintain the customer accounts as an array of structures,
+transfer complete structures to and from functions */
+typedef struct {
+int month;
+int day;
+int year;
+} date;
+typedef struct {
+char name[80];
+char street[80];
+char city(801;
+int acct-no; /* (positive integer) */
+char acct-type; /* C (current), 0 (overdue), or D (delinquent) */
+float oldbalance; /* (nonnegative quantity) */
+float newbalance; /* (nonnegative quantity) *I
+float payment; /* (nonnegative quantity) */
+date lastpayment;
+record;
+record readinput (int 1) ; /* function prototype */
+void writeoutput(record customer); /* function prototype */
+main( )
+/* read customer accounts, process each account, and display output */
+int i,n; /* variable declarations */
+record customer[lOO]; /* array declaration (array of structures) */
+printf('CUST0MER BILLING SYSTEM\n\n");
+printf("How many customers are there? ");
+scanf ( "%d" an) ;
+for (i = 0; i< n; ++i) {
+customer[i] = readinput(1);
+/* determine account status */
+if (customer[i].payment > 0)
+customer[i].acct-type =
+(customer[i].payment < 0.1 * customer[i].oldbalance) 7 '0': 'C';
+else
+customer[i].acct-type =
+(customer[i].oldbalance > 0) 7 ID' : 'C';
+/* adjust account balance */
+customer[i].newbalance = customer[i].oldbalance - customer[i).payment;
+
+for (i = 0; i< n; ++i)
+writeoutput(customer[i]);
+
+
+368 STRUCTURES AND UNIONS [CHAP. 11
+record readinput(int i)
+/* read input data for a customer */
+
+record customer;
+printf ("\nCustomer no. %d\n", i+ 1);
+printf(' Name: ");
+scanf(" %[^\n]", customer.name);
+printf ( I' Street: " ) ;
+scanf(" %[^\n]', customer.street);
+printf ( '' City: " );
+scanf(" %[-\n]", customer.city);
+printf(" Account number: ');
+scanf ( "%d", &customer. acct-no) ;
+printf(" Previous balance: ");
+scanf ( '%f 'I, &customer. oldbalance) ;
+printf(' Current payment: ");
+scanf("%f", &customer.payment);
+printf ( I' Payment date (mm/dd/yyyy) : I' ) ;
+scanf("%d/%d/%d",&customer.lastpayment.month,
+&customer.lastpayment.day,
+&customer.lastpayment.year);
+
+return(customer);
+
+void writeoutput(record customer)
+/* display current information for a customer */
+{
+printf ( '\nName: %s", customer. name) ;
+printf (I' Account number: %d\n", customer.acct-no);
+printf ("Street: %s\n', customer.street);
+printf ( "City: %s\n\n", customer .city) ;
+printf('01d balance: %7.2f', customer.oldba1ance);
+printf(" Current payment: %7.2f", customer.payment);
+printf(" New balance: %7.2f\n\n", customer.newbalance);
+printf("Account status: ');
+switch (customer.acct-type) {
+case 'C' :
+printf ("CURRENT\n\n") ;
+break;
+case '0':
+printf('OVERDUE\n\n");
+break;
+case ID':
+printf("DELINQUENT\n\n");
+break;
+default :
+printf("ERROR\n\n');
+
+
+return;
+}
