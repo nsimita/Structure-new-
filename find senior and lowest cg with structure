@@ -1,0 +1,94 @@
+//Declare a structure of students with three member variables (name, id and cgpa), where name is a string and id are strings, and cgpa is a float value with default values. find senior and min cgpa
+#include<stdio.h>
+#define MAX 2
+
+struct Student{
+    char id[10];
+    char name[30];
+    float cgpa;
+    int age;
+};
+
+typedef struct Student st;
+st std[MAX];
+//st std2[MAX];
+
+
+void read_data(){
+
+    int i;
+
+    for(i=0; i<MAX; i++){
+        fflush(stdin);
+        printf("Enter student ID: ");
+        //gets(std[i].id);
+        scanf("%s", std[i].id);
+
+        fflush(stdin);
+
+        printf("\nEnter student Name: ");
+        gets(std[i].name);
+        //scanf("%s", std[i].name);
+
+        fflush(stdin);
+
+        printf("\nEnter student CGPA: ");
+        scanf("%f", &std[i].cgpa);
+
+        printf("\nEnter student Age: ");
+        scanf("%d", &std[i].age);
+    }
+}
+
+void display(){
+    int i;
+
+    for(i=0;i<MAX;i++){
+        printf("Name : %s\n", std[i].name);
+        printf("ID : %s\n", std[i].id);
+        printf("CGPA : %f\n", std[i].cgpa);
+        printf("Age : %d\n", std[i].age);
+    }
+}
+
+int senior(){
+    int max = std[0].age;
+
+    int i, pos=0;
+    for(i=0; i<MAX; i++){
+        if(max<std[i].age){
+            max = std[i].age;
+            pos = i;
+        }
+    }
+
+    return pos;
+}
+
+void lowest_CGPA(){
+    float low = std[0].cgpa;
+
+    int i, pos=0;
+
+    for(i=0; i<MAX; i++){
+        if(low>std[i].cgpa){
+            low = std[i].cgpa;
+            pos = i;
+        }
+    }
+
+    printf("\nThe lowest CGPA student's information is displayed below: \n");
+    printf("Name : %s;  CGPA: %f;   ID: %s", std[pos].name, std[pos].cgpa, std[pos].id);
+}
+
+int main(){
+    read_data();
+    display();
+    int loc = senior();
+
+    printf("The senior student's information is displayed below: \n");
+    printf("Name : %s;  Age: %d", std[loc].name, std[loc].age);
+    lowest_CGPA();
+
+    return 0;
+}
