@@ -1,0 +1,29 @@
+#include <stdio.h>
+struct student{
+    char name[30];
+    int ID;
+    float mark;
+    
+};
+ void display(struct student s){ //infos from std will be stored at s
+     printf("name : %s\n",s.name);
+     printf("ID : %d\name",s.ID);
+     printf("Mark : %.2f\n", s.mark);
+     
+ }
+int main()
+{
+   struct student std;
+       printf("enter info for studen \n");
+       printf("Enter name = \n");
+       gets(std.name);
+       printf("Enter ID = \n");
+       scanf("%d",&std.ID); 
+       printf("Enter mark = \n");
+       scanf("%f",&std.mark);
+       
+       display(std); //passing std to the display func
+           return 0;
+   }
+
+
